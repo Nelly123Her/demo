@@ -19,7 +19,6 @@ class ComplementoPagoDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->editColumn('subtotal', fn($f) => number_format($f->subtotal, 2))
             ->editColumn('total', fn($f) => number_format($f->total, 2))
-            ->editColumn('pagado', fn($f) => number_format($f->pagado, 2))
             ->editColumn('fecha_hora', fn($f) => \Carbon\Carbon::parse($f->fecha_hora)->format('Y-m-d H:i:s'))
             ->addColumn('pdf', fn($f) => $f->pdf_url ? "<a href='$f->pdf_url' target='_blank'>PDF</a>" : '-')
             ->addColumn('xml', fn($f) => $f->xml_url ? "<a href='$f->xml_url' target='_blank'>XML</a>" : '-')
@@ -79,7 +78,6 @@ class ComplementoPagoDataTable extends DataTable
             Column::make('cliente')->title('Cliente'),
             Column::make('subtotal')->title('Subtotal'),
             Column::make('total')->title('Total'),
-            Column::make('pagado')->title('Pagado'),
             Column::make('folio_fiscal')->title('Folio Fiscal'),
             Column::make('metodo_pago')->title('Método Pago'),
             Column::make('estado')->title('Estado'),
