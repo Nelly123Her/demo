@@ -54,14 +54,14 @@ class PuntoDeVenta extends Component
             'precio_venta'  => $producto->precio_venta,
             'cantidad'      => $this->cantidad,
             'importe'       => $importe,
-            'imagen'        => $producto->imagen_url ?? asset('img/default.jpg'),
+            'images'        => json_decode($producto->imagen_url) ?? [asset('images/no-image.png')],
         ];
 
         $this->items[] = $item;
 
         $this->selectedProductName = $producto->descripcion;
         $this->selectedProductPrice = $producto->precio_venta;
-        $this->previewImage = $item['imagen'];
+        $this->previewImage = $item['images'][0];
 
         $this->reset(['codigo', 'cantidad', 'precio']);
         $this->cantidad = 1;
